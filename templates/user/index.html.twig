@@ -1,7 +1,7 @@
 {% set title = 'Users' %}
 {% set filename = 'index.html.twig' %}
 
-{% extends 'layouts/base.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block content %}
 <div class="page-heading">
     <div class="page-title">
@@ -31,7 +31,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Email</th>
-                            <th>Roles</th>
+                            {# <th>Roles</th> #}
                             <th>Nom</th>
                             <th>Prenom</th>
                             <th>Adresse</th>
@@ -42,7 +42,7 @@
                         <tr>
                             <td>{{user.id}}</td>
                             <td>{{user.email}}</td>
-                            <td>{{user.Roles}}</td>
+                            {# <td>{{user.roles}}</td> #}
                             <td>{{user.nom}}</td>
                             <td>{{user.prenom}}</td>
                             <td>{{user.adresse}}</td>
