@@ -2,19 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class DashboardController extends AbstractController
+final class UserController extends AbstractController
 {
-    #[Route('/dashboard', name: 'app_dashboard')]
+    #[Route('/user', name: 'app_user')]
     public function index(UserRepository $userRepository): Response
     {   
-        $userCount = $userRepository->countUsers();
-        return $this->render('dashboard/index.html.twig', [
-            'userCount' => $userCount,
+        $user = $userRepository->findAllUsers();
+        return $this->render('user/index.html.twig', [
+            'users' => $user,
         ]);
     }
 }
