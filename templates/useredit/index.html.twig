@@ -1,0 +1,101 @@
+{% set title = 'UsersEdit' %}
+{% set filename = 'index.html.twig' %}
+
+{% extends 'base.html.twig' %}
+{% block content %}
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>DataTable</h3>
+                <p class="text-subtitle text-muted">For user to check they list</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section id="basic-horizontal-layouts">
+        <div class="row match-height">
+            <div class="col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Horizontal Form</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form class="form form-horizontal" method="POST" action="{{ path('app_user_edit',{id:user.id})  }}">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>First Name</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text" id="first-name" class="form-control" name="nom"
+                                                value="{{ user.name}}">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Last Name</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text" id="first-name" class="form-control" name="prenom"
+                                                value="{{ user.prenom}}">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="email" id="email-id" class="form-control" name="email-id"
+                                               value="{{ user.email}}" disabled>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Adresse</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text" id="first-name" class="form-control" name="adresse"
+                                                value="{{ user.adresse}}">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Role</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                        <select class="form-select" id="inputGroupSelect01">
+                                        {% for roleArray in roles %}
+                                            {% for role in roleArray.roles %}
+                                            <option class="form-control" 
+                                                value="{{ role }}" name="roles" {% if role in user.roles %} selected {% endif %}>{{ role }}
+                                            </option>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        </select>
+                                        </div>
+                                        <div class="col-sm-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
+{% endblock %}
+{% block js %}
+<script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+    // Simple Datatable
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+{% endblock %}

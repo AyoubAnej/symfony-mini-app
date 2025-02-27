@@ -31,23 +31,28 @@
                         <tr>
                             <th>Id</th>
                             <th>Email</th>
-                            {# <th>Roles</th> #}
                             <th>Nom</th>
                             <th>Prenom</th>
                             <th>Adresse</th>
+                            <th>Roles</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for user in users %}
                         <tr>
-                            <td>{{user.id}}</td>
-                            <td>{{user.email}}</td>
-                            {# <td>{{user.roles}}</td> #}
-                            <td>{{user.nom}}</td>
-                            <td>{{user.prenom}}</td>
-                            <td>{{user.adresse}}</td>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.nom }}</td>
+                            <td>{{ user.prenom }}</td>
+                            <td>{{ user.adresse }}</td>
+                            <td>{{ user.roles|join(', ') }}</td>
+                            <td>{% if 'ROLE_ADMIN' in user.roles %}
+                                <a href={{path('app_user_edit', {id:user.id})}}>Edit</a>
+                                {% endif %}
+                            </td>
                         </tr>
-                        {% endfor %}
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
